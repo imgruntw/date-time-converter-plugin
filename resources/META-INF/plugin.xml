@@ -1,0 +1,40 @@
+<idea-plugin>
+
+    <id>de.imgruntw.plugin.datetimeconverter</id>
+    <name>Datetimeconverter</name>
+    <version>1.0</version>
+    <vendor url="https://github.com/imgruntw/date-time-converter-plugin">imgruntw</vendor>
+
+    <description><![CDATA[
+        Converter between milliseconds and textual date time.
+    ]]></description>
+
+    <change-notes><![CDATA[
+        No changes.
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="172"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Datetimeconverter" anchor="bottom" icon="/icon/symbol.png"
+                    factoryClass="de.imgruntw.datetimeconverter.DateTimeConverterWindowFactory" secondary="false"/>
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+    <application-components>
+        <component>
+            <implementation-class>de.imgruntw.datetimeconverter.DateTimeConverterView</implementation-class>
+        </component>
+    </application-components>
+
+</idea-plugin>
