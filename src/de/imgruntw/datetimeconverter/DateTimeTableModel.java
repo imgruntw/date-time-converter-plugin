@@ -4,24 +4,24 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.table.AbstractTableModel;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public final class DateTimeTableModel extends AbstractTableModel {
 
-    private static final String FORMAT = "dd/MM/yyyy - HH:mm:ss.SSS";
+    private static final String DEFAULT_FORMAT = "dd/MM/yyyy - HH:mm:ss.SSS";
+    private static final int MS_COLUMN = 0;
+    private static final int DATE_TIME_COLUMN = 1;
+    private static final int FORMAT_COLUMN = 2;
 
-    private final List<ZonedDateTime> rows;
+    private final List<Row> rows;
 
     public DateTimeTableModel() {
         this.rows = new ArrayList<>();
     }
 
     public void addRow(@NotNull ZonedDateTime dateTime) {
-        rows.add(dateTime);
+        rows.add(new Row(dateTime, DEFAULT_FORMAT));
         fireTableDataChanged();
     }
 
@@ -37,17 +37,22 @@ public final class DateTimeTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 2;
+        return 3;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        final ZonedDateTime row = rows.get(rowIndex);
+        final Row row = rows.get(rowIndex);
 
-        if (columnIndex == 0) {
-            return row.toInstant().toEpochMilli();
-        } else {
-            return DateTimeFormatter.ofPattern(FORMAT).format(row);
+        switch (columnIndex) {
+            case MS_COLUMN:
+                return DateTimeUtil.toMs(row.getDateTime());
+            case DATE_TIME_COLUMN:
+                return DateTimeUtil.toText(row.getDateTime(), row.getFormat());
+            case FORMAT_COLUMN:
+                return row.getFormat();
+            default:
+                throw new IllegalArgumentException("unknown column index: " + columnIndex);
         }
     }
 
@@ -59,14 +64,36 @@ public final class DateTimeTableModel extends AbstractTableModel {
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         final String text = (String) aValue;
-        final ZonedDateTime row;
+        final ZonedDateTime currentDateTime = rows.get(rowIndex).getDateTime();
+        final String currentFormat = rows.get(rowIndex).getFormat();
+        final Row row;
 
-        if (columnIndex == 0) {
-            row = Instant.ofEpochMilli(Long.valueOf(text)).atZone(ZoneOffset.UTC);
-        } else {
-            row = ZonedDateTime.parse(text, DateTimeFormatter.ofPattern(FORMAT).withZone(ZoneOffset.UTC));
+        switch (columnIndex) {
+            case MS_COLUMN:
+                if (DateTimeUtil.isLong(text)) {
+                    row = new Row(DateTimeUtil.toDateTime(text), currentFormat);
+                } else {
+                    row = new Row(DateTimeUtil.zeroDay(), currentFormat);
+                }
+                break;
+            case DATE_TIME_COLUMN:
+                if (DateTimeUtil.isDateTime(text, currentFormat)) {
+                    row = new Row(DateTimeUtil.toDateTime(text, currentFormat), currentFormat);
+                } else {
+                    row = new Row(DateTimeUtil.zeroDay(), currentFormat);
+                }
+                break;
+            case FORMAT_COLUMN:
+                if (DateTimeUtil.isFormat(text)) {
+                    row = new Row(currentDateTime, text);
+                } else {
+                    row = new Row(DateTimeUtil.zeroDay(), DEFAULT_FORMAT);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("unknown column index: " + columnIndex);
         }
 
-        rows.add(rowIndex, row);
+        rows.set(rowIndex, row);
     }
 }
