@@ -20,6 +20,10 @@ public final class DeleteRowAction extends DumbAwareAction {
 
     @Override
     public void actionPerformed(AnActionEvent anActionEvent) {
-        model.deleteRow(table.getSelectedRow());
+        final int selectedRow = table.getSelectedRow();
+
+        if (selectedRow != -1) {
+            model.deleteRow(selectedRow);
+        }
     }
 }
