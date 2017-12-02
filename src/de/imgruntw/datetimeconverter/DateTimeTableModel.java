@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.table.AbstractTableModel;
 import java.time.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public final class DateTimeTableModel extends AbstractTableModel {
@@ -22,6 +23,11 @@ public final class DateTimeTableModel extends AbstractTableModel {
 
     public void addRow(@NotNull ZonedDateTime dateTime) {
         rows.add(new Row(dateTime, DEFAULT_FORMAT));
+        fireTableDataChanged();
+    }
+
+    public void addRows(@NotNull Collection<ZonedDateTime> dateTimes) {
+        dateTimes.forEach(dateTime -> rows.add(new Row(dateTime, DEFAULT_FORMAT)));
         fireTableDataChanged();
     }
 

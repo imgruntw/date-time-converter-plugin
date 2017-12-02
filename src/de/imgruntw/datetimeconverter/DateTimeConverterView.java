@@ -1,15 +1,23 @@
 package de.imgruntw.datetimeconverter;
 
-import com.intellij.openapi.actionSystem.ActionManager;
-import com.intellij.openapi.actionSystem.ActionToolbar;
-import com.intellij.openapi.actionSystem.DefaultActionGroup;
+import com.intellij.openapi.actionSystem.*;
+import com.intellij.openapi.actionSystem.ex.ActionUtil;
+import com.intellij.openapi.application.ex.ClipboardUtil;
 import com.intellij.openapi.components.ApplicationComponent;
+import com.intellij.openapi.keymap.KeymapUtil;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
+import com.intellij.ui.KeyStrokeAdapter;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.table.JBTable;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public final class DateTimeConverterView implements ApplicationComponent {
 
@@ -20,10 +28,12 @@ public final class DateTimeConverterView implements ApplicationComponent {
     public void initComponent() {
         model = new DateTimeTableModel();
 
+        final KeyStroke shortcutPaste = KeymapUtil.getKeyStroke(CommonShortcuts.getPaste());
         final DateTimeColumnModel columns = new DateTimeColumnModel("Unix timestamp (ms)", "Datetime", "Format");
         final JBTable table = new JBTable(model, columns);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setAutoCreateRowSorter(true);
+        table.registerKeyboardAction(e -> model.addRows(DateTimeUtil.getClipboardDateTimes()), shortcutPaste, JComponent.WHEN_FOCUSED);
 
         final JBScrollPane scrollPane = new JBScrollPane(table);
 
