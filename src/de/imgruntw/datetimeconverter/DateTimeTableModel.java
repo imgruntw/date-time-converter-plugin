@@ -10,7 +10,7 @@ import java.util.List;
 
 public final class DateTimeTableModel extends AbstractTableModel {
 
-    private static final String DEFAULT_FORMAT = "dd/MM/yyyy - HH:mm:ss.SSS";
+    private static final String DEFAULT_FORMAT = DateTimePattern.FULL.getPattern();
     private static final int MS_COLUMN = 0;
     private static final int DATE_TIME_COLUMN = 1;
     private static final int FORMAT_COLUMN = 2;

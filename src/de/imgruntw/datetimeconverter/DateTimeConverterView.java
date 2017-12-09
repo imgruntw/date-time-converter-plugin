@@ -5,8 +5,10 @@ import com.intellij.openapi.actionSystem.ex.ActionUtil;
 import com.intellij.openapi.application.ex.ClipboardUtil;
 import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.keymap.KeymapUtil;
+import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.ui.KeyStrokeAdapter;
+import com.intellij.ui.components.JBComboBoxLabel;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.table.JBTable;
 import org.jetbrains.annotations.NotNull;
@@ -30,6 +32,11 @@ public final class DateTimeConverterView implements ApplicationComponent {
 
         final KeyStroke shortcutPaste = KeymapUtil.getKeyStroke(CommonShortcuts.getPaste());
         final DateTimeColumnModel columns = new DateTimeColumnModel("Unix timestamp (ms)", "Datetime", "Format");
+
+        final ComboBox defaultPatterns = new ComboBox(DateTimePattern.getPatterns());
+        defaultPatterns.setEditable(true);
+        columns.getColumn(2).setCellEditor(new DefaultCellEditor(defaultPatterns));
+
         final JBTable table = new JBTable(model, columns);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setAutoCreateRowSorter(true);
