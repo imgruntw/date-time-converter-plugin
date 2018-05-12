@@ -2,20 +2,27 @@
 
     <id>de.imgruntw.plugin.datetimeconverter</id>
     <name>Datetimeconverter</name>
-    <version>1.2</version>
+    <version>1.3</version>
     <vendor url="https://github.com/imgruntw/date-time-converter-plugin">imgruntw</vendor>
 
     <description><![CDATA[
-        Converter between milliseconds and textual date time.
+        1. Converting between milliseconds and textual date time.
+        2. Formatting representation of date time. (See patterns for formatting from DateTimeFormatter)
+        3. Converting a batch of milliseconds from the clipboard. (Ctrl + V or ⌘ + V)
+        4. Editable dropdown with some default format patterns.
+        5. Editable dropdown with some default time zones ids.
     ]]></description>
 
     <change-notes><![CDATA[
-        No changes.
+        1.3 - Added time zone selection and updated minimum requirements
+        1.2 - Added editable dropdown with some default patterns for the Format cell column
+        1.1 - Converting a batch of milliseconds from the clipboard and some bugfixes
+        1.0 - Initial
     ]]>
     </change-notes>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="172"/>
+    <idea-version since-build="181"/>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->

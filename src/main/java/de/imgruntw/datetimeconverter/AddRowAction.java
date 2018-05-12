@@ -17,6 +17,6 @@ public final class AddRowAction extends DumbAwareAction {
 
     @Override
     public void actionPerformed(AnActionEvent anActionEvent) {
-        model.addRow(DateTimeUtil.nowGasDay());
+        model.addRow(DateTimeUtil.getCurrentGasDayMs());
     }
 }

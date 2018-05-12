@@ -1,25 +1,18 @@
 package de.imgruntw.datetimeconverter;
 
-import com.intellij.openapi.actionSystem.*;
-import com.intellij.openapi.actionSystem.ex.ActionUtil;
-import com.intellij.openapi.application.ex.ClipboardUtil;
+import com.intellij.openapi.actionSystem.ActionManager;
+import com.intellij.openapi.actionSystem.ActionToolbar;
+import com.intellij.openapi.actionSystem.CommonShortcuts;
+import com.intellij.openapi.actionSystem.DefaultActionGroup;
 import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.keymap.KeymapUtil;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
-import com.intellij.ui.KeyStrokeAdapter;
-import com.intellij.ui.components.JBComboBoxLabel;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.table.JBTable;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public final class DateTimeConverterView implements ApplicationComponent {
 
@@ -31,11 +24,15 @@ public final class DateTimeConverterView implements ApplicationComponent {
         model = new DateTimeTableModel();
 
         final KeyStroke shortcutPaste = KeymapUtil.getKeyStroke(CommonShortcuts.getPaste());
-        final DateTimeColumnModel columns = new DateTimeColumnModel("Unix timestamp (ms)", "Datetime", "Format");
+        final DateTimeColumnModel columns = new DateTimeColumnModel("Unix timestamp (ms)", "Datetime", "Format", "Time zone");
 
         final ComboBox defaultPatterns = new ComboBox(DateTimePattern.getPatterns());
         defaultPatterns.setEditable(true);
-        columns.getColumn(2).setCellEditor(new DefaultCellEditor(defaultPatterns));
+        columns.getColumn(DateTimeTableModel.FORMAT_COLUMN).setCellEditor(new DefaultCellEditor(defaultPatterns));
+
+        final ComboBox defaultTimeZones = new ComboBox(TimeZoneId.getIds());
+        defaultTimeZones.setEditable(true);
+        columns.getColumn(DateTimeTableModel.TIME_ZONE_COLUMN).setCellEditor(new DefaultCellEditor(defaultTimeZones));
 
         final JBTable table = new JBTable(model, columns);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

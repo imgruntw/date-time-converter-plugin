@@ -3,6 +3,10 @@
 *.iml
 /out/
 .idea_modules/
+gradle.properties
+.gradle/
+build/
+gradle/
 
 *.DS_Store
 ._*

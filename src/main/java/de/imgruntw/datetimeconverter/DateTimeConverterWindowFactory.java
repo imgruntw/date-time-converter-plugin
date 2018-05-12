@@ -12,7 +12,7 @@ public final class DateTimeConverterWindowFactory implements ToolWindowFactory {
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         final DateTimeConverterView view = project.getComponent(DateTimeConverterView.class);
-        view.getModel().addRow(DateTimeUtil.nowGasDay());
+        view.getModel().addRow(DateTimeUtil.getCurrentGasDayMs());
 
         final Content content = ContentFactory.SERVICE.getInstance().createContent(view.getComponent(), "", false);
         content.setCloseable(true);

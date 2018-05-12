@@ -12,4 +12,6 @@ A IDEA-Plugin for converting between milliseconds and textual date time.
 
 3. Converting a batch of milliseconds from the clipboard. (Ctrl + V or &#8984; + V)
 
-4. Editable dropdown with some default patterns for the Format cell column.
+4. Editable dropdown with some default format patterns.
+
+5. Editable dropdown with some default time zones ids.

@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "org.jetbrains.intellij" version "0.3.0"
+}
+
+allprojects {
+    buildDir = "/Volumes/Ramdisk/dev/gradle/${rootProject.name}/${project.name}"
+}
+
+apply plugin: 'idea'
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'java'
+
+intellij {
+    version 'IC-2018.1.3' // see https://www.jetbrains.com/intellij-repository/releases
+    plugins 'coverage' // Bundled plugin dependencies
+    pluginName 'Datetimeconverter'
+}
+
+group 'de.imgruntw.plugin.datetimeconverter'
+version '1.3' // Plugin version
