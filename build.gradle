@@ -28,4 +28,4 @@ publishPlugin {
 }
 
 group 'de.imgruntw.plugin.datetimeconverter'
-version '1.3' // Plugin version
+version '1.4' // Plugin version
