@@ -17,7 +17,7 @@ apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'java'
 
 intellij {
-    version 'IC-2018.1.3' // see https://www.jetbrains.com/intellij-repository/releases
+    version 'IC-2018.2' // see https://www.jetbrains.com/intellij-repository/releases
     plugins 'coverage' // Bundled plugin dependencies
     pluginName 'Datetimeconverter'
 }
