@@ -22,5 +22,10 @@ intellij {
     pluginName 'Datetimeconverter'
 }
 
+publishPlugin {
+    username 'xyz@domain.com'
+    password 'password'
+}
+
 group 'de.imgruntw.plugin.datetimeconverter'
 version '1.3' // Plugin version

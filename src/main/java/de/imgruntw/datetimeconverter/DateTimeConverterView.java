@@ -13,6 +13,7 @@ import com.intellij.ui.table.JBTable;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 public final class DateTimeConverterView implements ApplicationComponent {
 
@@ -44,6 +45,7 @@ public final class DateTimeConverterView implements ApplicationComponent {
         final DefaultActionGroup group = new DefaultActionGroup();
         group.add(new AddRowAction(model));
         group.add(new DeleteRowAction(model, table));
+        group.add(new PasteRowAction(model));
 
         final SimpleToolWindowPanel panel = new SimpleToolWindowPanel(false);
 
