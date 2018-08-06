@@ -67,7 +67,8 @@ public final class DateTimeUtil {
     }
 
     public static long toMs(String text, String format, String currentTimeZoneId) {
-        final ZonedDateTime zonedDateTime = ZonedDateTime.parse(text, DateTimeFormatter.ofPattern(format).withZone(ZoneId.of(currentTimeZoneId)));
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format).withZone(ZoneId.of(currentTimeZoneId));
+        final ZonedDateTime zonedDateTime = ZonedDateTime.parse(text, formatter);
 
         return zonedDateTime.toInstant().toEpochMilli();
     }

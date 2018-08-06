@@ -16,16 +16,18 @@ apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'java'
 
+// https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
     version 'IC-2018.2' // see https://www.jetbrains.com/intellij-repository/releases
     plugins 'coverage' // Bundled plugin dependencies
     pluginName 'Datetimeconverter'
+    updateSinceUntilBuild false
 }
 
 publishPlugin {
-    username 'xyz@domain.com'
-    password 'password'
+    username publishUsername
+    password publishPassword
 }
 
 group 'de.imgruntw.plugin.datetimeconverter'
-version '1.4' // Plugin version
+version '1.5' // Plugin version

@@ -2,7 +2,7 @@
 
     <id>de.imgruntw.plugin.datetimeconverter</id>
     <name>Datetimeconverter</name>
-    <version>1.4</version>
+    <version>1.5</version>
     <vendor url="https://github.com/imgruntw/date-time-converter-plugin">imgruntw</vendor>
 
     <description><![CDATA[
@@ -17,6 +17,7 @@
 
     <change-notes><![CDATA[
         <ul>
+            <li>1.5 - Support for newer IDEA versions</li>
             <li>1.4 - Added paste button</li>
             <li>1.3 - Added time zone selection and updated minimum requirements</li>
             <li>1.2 - Added editable dropdown with some default patterns for the Format cell column</li>
