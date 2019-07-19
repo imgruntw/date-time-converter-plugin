@@ -35,4 +35,4 @@ publishPlugin {
 }
 
 group 'de.imgruntw.plugin.datetimeconverter'
-version '1.5' // Plugin version
+version '1.6' // Plugin version
