@@ -55,11 +55,15 @@ public final class DateTimeUtil {
     @NotNull
     public static List<Long> getClipboardDateTimes() {
         final List<Long> dateTimes = new ArrayList<>();
-        final String[] lines = ClipboardUtil.getTextInClipboard().split(System.lineSeparator());
+        final String text = ClipboardUtil.getTextInClipboard();
 
-        for (String line : lines) {
-            if (DateTimeUtil.isLong(line)) {
-                dateTimes.add(Long.parseLong(line));
+        if (text != null) {
+            final String[] lines = text.split(System.lineSeparator());
+
+            for (String line : lines) {
+                if (DateTimeUtil.isLong(line)) {
+                    dateTimes.add(Long.parseLong(line));
+                }
             }
         }
 
@@ -74,7 +78,11 @@ public final class DateTimeUtil {
     }
 
     public static long getCurrentGasDayMs() {
-        final ZonedDateTime now = ZonedDateTime.now(ZoneId.systemDefault()).withHour(6).withMinute(0).withSecond(0).withNano(0);
+        final ZonedDateTime now = ZonedDateTime.now(ZoneId.systemDefault())
+                .withHour(6)
+                .withMinute(0)
+                .withSecond(0)
+                .withNano(0);
 
         return now.toInstant().toEpochMilli();
     }

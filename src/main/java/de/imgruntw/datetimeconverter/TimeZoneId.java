@@ -8,6 +8,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public enum TimeZoneId {
+
     UTC("UTC"),
     LONDON("Europe/London"),
     BERLIN("Europe/Berlin"),

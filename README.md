@@ -15,3 +15,5 @@ A IDEA-Plugin for converting between milliseconds and textual date time.
 4. Editable dropdown with some default format patterns.
 
 5. Editable dropdown with some default time zones ids.
+
+6. Timestamps can be displayed as milliseconds and seconds.

@@ -5,7 +5,7 @@ buildscript {
 }
 
 plugins {
-    id "org.jetbrains.intellij" version "0.3.0"
+    id "org.jetbrains.intellij" version "0.4.7"
 }
 
 allprojects {
@@ -16,6 +16,11 @@ apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'java'
 
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
 // https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
     version 'IC-2018.2' // see https://www.jetbrains.com/intellij-repository/releases
@@ -25,8 +30,8 @@ intellij {
 }
 
 publishPlugin {
-    username publishUsername
-    password publishPassword
+    username 'unknown'
+    password 'unknown'
 }
 
 group 'de.imgruntw.plugin.datetimeconverter'

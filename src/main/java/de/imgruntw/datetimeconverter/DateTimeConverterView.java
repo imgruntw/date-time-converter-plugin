@@ -13,7 +13,6 @@ import com.intellij.ui.table.JBTable;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.util.Arrays;
 
 public final class DateTimeConverterView implements ApplicationComponent {
 
@@ -29,16 +28,17 @@ public final class DateTimeConverterView implements ApplicationComponent {
 
         final ComboBox defaultPatterns = new ComboBox(DateTimePattern.getPatterns());
         defaultPatterns.setEditable(true);
-        columns.getColumn(DateTimeTableModel.FORMAT_COLUMN).setCellEditor(new DefaultCellEditor(defaultPatterns));
+        columns.getColumn(Column.FORMAT.getIndex()).setCellEditor(new DefaultCellEditor(defaultPatterns));
 
         final ComboBox defaultTimeZones = new ComboBox(TimeZoneId.getIds());
         defaultTimeZones.setEditable(true);
-        columns.getColumn(DateTimeTableModel.TIME_ZONE_COLUMN).setCellEditor(new DefaultCellEditor(defaultTimeZones));
+        columns.getColumn(Column.TIME_ZONE.getIndex()).setCellEditor(new DefaultCellEditor(defaultTimeZones));
 
         final JBTable table = new JBTable(model, columns);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setAutoCreateRowSorter(true);
         table.registerKeyboardAction(e -> model.addRows(DateTimeUtil.getClipboardDateTimes()), shortcutPaste, JComponent.WHEN_FOCUSED);
+        columns.setTableHeader(table.getTableHeader());
 
         final JBScrollPane scrollPane = new JBScrollPane(table);
 
@@ -46,6 +46,7 @@ public final class DateTimeConverterView implements ApplicationComponent {
         group.add(new AddRowAction(model));
         group.add(new DeleteRowAction(model, table));
         group.add(new PasteRowAction(model));
+        group.add(new ChangeUnitPopupRowAction(model, columns));
 
         final SimpleToolWindowPanel panel = new SimpleToolWindowPanel(false);
 
@@ -62,8 +63,8 @@ public final class DateTimeConverterView implements ApplicationComponent {
     public void disposeComponent() {
     }
 
-    @Override
     @NotNull
+    @Override
     public String getComponentName() {
         return "DateTimeConverterView";
     }

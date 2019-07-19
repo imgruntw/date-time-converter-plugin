@@ -12,7 +12,7 @@ public enum DateTimePattern {
     HOUR_PRECISION("dd/MM/yyyy - HH"),
     FULL_ZONE_OFFSET("dd/MM/yyyy'T'HH:mm:ss.SSSZ");
 
-    private String pattern;
+    private final String pattern;
 
     DateTimePattern(@NotNull String pattern) {
         this.pattern = pattern;
