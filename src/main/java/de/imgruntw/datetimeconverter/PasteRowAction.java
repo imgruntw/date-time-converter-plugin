@@ -17,7 +17,7 @@ public final class PasteRowAction extends DumbAwareAction {
     }
 
     @Override
-    public void actionPerformed(AnActionEvent anActionEvent) {
+    public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
         model.addRows(DateTimeUtil.getClipboardDateTimes());
     }
 }

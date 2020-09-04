@@ -25,8 +25,7 @@ public final class ChangeUnitRowAction extends DumbAwareAction {
     }
 
     @Override
-    public void actionPerformed(AnActionEvent anActionEvent) {
-
+    public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
         final String valueColumnName = getTemplatePresentation().getText();
         columns.setColumnHeader(Column.VALUE, valueColumnName);
 

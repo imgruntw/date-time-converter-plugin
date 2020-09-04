@@ -1,38 +1,47 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-}
-
 plugins {
-    id "org.jetbrains.intellij" version "0.4.7"
-}
-
-allprojects {
-    buildDir = "/Volumes/Ramdisk/dev/gradle/${rootProject.name}/${project.name}"
-}
-
-apply plugin: 'idea'
-apply plugin: 'org.jetbrains.intellij'
-apply plugin: 'java'
-
-compileJava {
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
-}
-
-// https://github.com/JetBrains/gradle-intellij-plugin
-intellij {
-    version 'IC-2018.2' // see https://www.jetbrains.com/intellij-repository/releases
-    plugins 'coverage' // Bundled plugin dependencies
-    pluginName 'Datetimeconverter'
-    updateSinceUntilBuild false
-}
-
-publishPlugin {
-    username 'unknown'
-    password 'unknown'
+    id 'org.jetbrains.intellij' version '0.4.22'
 }
 
 group 'de.imgruntw.plugin.datetimeconverter'
-version '1.6' // Plugin version
+version '1.7'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+compileJava {
+    sourceCompatibility = 11
+    targetCompatibility = 11
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version '2020.2.1'
+    pluginName 'Datetimeconverter'
+}
+
+patchPluginXml {
+    changeNotes """
+        <ul>
+            <li>1.7 - Bugfixes</li>
+            <li>1.6 - Added timestamp unit (ms and sec) conversion</li>
+            <li>1.5 - Support for newer IDEA versions</li>
+            <li>1.4 - Added paste button</li>
+            <li>1.3 - Added time zone selection and updated minimum requirements</li>
+            <li>1.2 - Added editable dropdown with some default patterns for the Format cell column</li>
+            <li>1.1 - Converting a batch of milliseconds from the clipboard and some bugfixes</li>
+            <li>1.0 - Initial</li>
+        </ul>"""
+}
+
+publishPlugin {
+    token 'hidden'
+}
+
+// allprojects {
+//     buildDir = "/Volumes/Ramdisk/dev/gradle/${rootProject.name}/${project.name}"
+// }

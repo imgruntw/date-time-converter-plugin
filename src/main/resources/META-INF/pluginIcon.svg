@@ -1,0 +1,21 @@
+<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="42" width="42" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_6" y2="16.18126" x2="21.4375" y1="6.30629" x1="2.06254" stroke-width="1.5" stroke="#000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_7" y2="10.05628" x2="18.0625" y1="17.93126" x1="23.93749" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_9" y2="17.18126" x2="14.43751" y1="17.68126" x1="23.56249" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_11" y2="35.05622" x2="11.81252" y1="16.05626" x1="33.18747" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_12" y2="27.43124" x2="14.81251" y1="37.43121" x1="9.68752" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_13" y2="32.68122" x2="19.3125" y1="37.55621" x1="9.68752" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="8" id="svg_14" y="8.55628" x="27.93748" stroke-width="0" stroke="#000" fill="#000000">0</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="8" id="svg_15" y="21.93125" x="4.56254" stroke-width="0" stroke="#000" fill="#000000">1</text>
+ </g>
+</svg>

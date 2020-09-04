@@ -1,8 +1,7 @@
 <idea-plugin>
-
     <id>de.imgruntw.plugin.datetimeconverter</id>
     <name>Datetimeconverter</name>
-    <version>1.6</version>
+    <version>1.7</version>
     <vendor url="https://github.com/imgruntw/date-time-converter-plugin">imgruntw</vendor>
 
     <description><![CDATA[
@@ -16,25 +15,13 @@
         </ul>
     ]]></description>
 
-    <change-notes><![CDATA[
-        <ul>
-            <li>1.6 - Added timestamp unit (ms and sec) conversion</li>
-            <li>1.5 - Support for newer IDEA versions</li>
-            <li>1.4 - Added paste button</li>
-            <li>1.3 - Added time zone selection and updated minimum requirements</li>
-            <li>1.2 - Added editable dropdown with some default patterns for the Format cell column</li>
-            <li>1.1 - Converting a batch of milliseconds from the clipboard and some bugfixes</li>
-            <li>1.0 - Initial</li>
-        </ul>
-    ]]>
-    </change-notes>
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html
+        for description -->
+    <idea-version since-build="202"/>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="181"/>
-
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
-    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="Datetimeconverter" anchor="bottom" icon="/icon/symbol.png"
@@ -45,11 +32,4 @@
     <actions>
         <!-- Add your actions here -->
     </actions>
-
-    <application-components>
-        <component>
-            <implementation-class>de.imgruntw.datetimeconverter.DateTimeConverterView</implementation-class>
-        </component>
-    </application-components>
-
 </idea-plugin>

@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.ActionToolbar;
 import com.intellij.openapi.actionSystem.CommonShortcuts;
 import com.intellij.openapi.actionSystem.DefaultActionGroup;
 import com.intellij.openapi.components.ApplicationComponent;
+import com.intellij.openapi.components.Service;
 import com.intellij.openapi.keymap.KeymapUtil;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
@@ -14,23 +15,23 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
-public final class DateTimeConverterView implements ApplicationComponent {
+@Service
+public final class DateTimeConverterViewService {
 
     private JComponent component;
     private DateTimeTableModel model;
 
-    @Override
     public void initComponent() {
         model = new DateTimeTableModel();
 
         final KeyStroke shortcutPaste = KeymapUtil.getKeyStroke(CommonShortcuts.getPaste());
         final DateTimeColumnModel columns = new DateTimeColumnModel("Unix timestamp (ms)", "Datetime", "Format", "Time zone");
 
-        final ComboBox defaultPatterns = new ComboBox(DateTimePattern.getPatterns());
+        final ComboBox<String> defaultPatterns = new ComboBox<>(DateTimePattern.getPatterns());
         defaultPatterns.setEditable(true);
         columns.getColumn(Column.FORMAT.getIndex()).setCellEditor(new DefaultCellEditor(defaultPatterns));
 
-        final ComboBox defaultTimeZones = new ComboBox(TimeZoneId.getIds());
+        final ComboBox<String> defaultTimeZones = new ComboBox<>(TimeZoneId.getIds());
         defaultTimeZones.setEditable(true);
         columns.getColumn(Column.TIME_ZONE.getIndex()).setCellEditor(new DefaultCellEditor(defaultTimeZones));
 
@@ -57,16 +58,6 @@ public final class DateTimeConverterView implements ApplicationComponent {
         panel.setToolbar(toolbar.getComponent());
 
         component = panel;
-    }
-
-    @Override
-    public void disposeComponent() {
-    }
-
-    @NotNull
-    @Override
-    public String getComponentName() {
-        return "DateTimeConverterView";
     }
 
     public JComponent getComponent() {

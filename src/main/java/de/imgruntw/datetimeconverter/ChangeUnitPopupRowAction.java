@@ -23,8 +23,7 @@ public final class ChangeUnitPopupRowAction extends DumbAwareAction {
     }
 
     @Override
-    public void actionPerformed(AnActionEvent anActionEvent) {
-
+    public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
         final DefaultActionGroup group = new DefaultActionGroup();
         group.add(new ChangeUnitRowAction("Unix timestamp (ms)", model, columns, ChronoUnit.MILLIS));
         group.add(new ChangeUnitRowAction("Unix timestamp (sec)", model, columns, ChronoUnit.SECONDS));

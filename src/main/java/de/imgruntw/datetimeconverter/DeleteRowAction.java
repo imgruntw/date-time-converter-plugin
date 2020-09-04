@@ -19,7 +19,7 @@ public final class DeleteRowAction extends DumbAwareAction {
     }
 
     @Override
-    public void actionPerformed(AnActionEvent anActionEvent) {
+    public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
         final int selectedRow = table.getSelectedRow();
 
         if (selectedRow != -1) {

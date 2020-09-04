@@ -37,7 +37,7 @@ public final class DateTimeUtil {
     public static boolean isFormat(String text) {
         try {
             DateTimeFormatter.ofPattern(text);
-            return text != null && !text.trim().isEmpty();
+            return !text.trim().isEmpty();
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -58,7 +58,7 @@ public final class DateTimeUtil {
         final String text = ClipboardUtil.getTextInClipboard();
 
         if (text != null) {
-            final String[] lines = text.split(System.lineSeparator());
+            final String[] lines = splitMultipleLines(text);
 
             for (String line : lines) {
                 if (DateTimeUtil.isLong(line)) {
@@ -68,6 +68,20 @@ public final class DateTimeUtil {
         }
 
         return dateTimes;
+    }
+
+    private static String[] splitMultipleLines(String text) {
+        final String[] lines;
+
+        if (text.contains("\n")) {
+            lines = text.split("\n");
+        } else if (text.contains("\r\n")) {
+            lines = text.split("\r\n");
+        } else {
+            lines = text.split(System.lineSeparator());
+        }
+
+        return lines;
     }
 
     public static long toMs(String text, String format, String currentTimeZoneId) {
