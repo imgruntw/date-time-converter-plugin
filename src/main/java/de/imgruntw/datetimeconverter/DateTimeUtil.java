@@ -73,10 +73,10 @@ public final class DateTimeUtil {
     private static String[] splitMultipleLines(String text) {
         final String[] lines;
 
-        if (text.contains("\n")) {
-            lines = text.split("\n");
-        } else if (text.contains("\r\n")) {
+        if (text.contains("\r\n")) {
             lines = text.split("\r\n");
+        } else if (text.contains("\n")) {
+            lines = text.split("\n");
         } else {
             lines = text.split(System.lineSeparator());
         }

@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>de.imgruntw.plugin.datetimeconverter</id>
     <name>Datetimeconverter</name>
-    <version>1.7</version>
+    <version>1.8</version>
     <vendor url="https://github.com/imgruntw/date-time-converter-plugin">imgruntw</vendor>
 
     <description><![CDATA[
@@ -17,7 +17,7 @@
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html
         for description -->
-    <idea-version since-build="202"/>
+    <idea-version since-build="203.5981.155"/>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
