@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'de.imgruntw.plugin.datetimeconverter'
-version '1.9'
+version '1.10'
 
 repositories {
     mavenCentral()
@@ -16,13 +16,14 @@ compileJava {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '211.6693.111'
+    version '212.4746.92'
     pluginName 'Datetimeconverter'
 }
 
 patchPluginXml {
     changeNotes """
         <ul>
+            <li>1.10 - Support for newer IDEA version</li>
             <li>1.9 - Support for newer IDEA version</li>
             <li>1.8 - Support for newer IDEA versions and Bugfixes</li>
             <li>1.7 - Bugfixes</li>
